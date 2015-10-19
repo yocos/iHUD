@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iHUDServer", "iHUDServer\iHUDServer.csproj", "{1B5126AA-1677-42A8-B9DC-E7A2826C0759}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iHUDServer.Tests", "iHUDServer.Tests\iHUDServer.Tests.csproj", "{22557B80-BBFD-4F6E-B198-D31AAFB1F8FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4B3E33EB-E546-46DD-A034-85529AB3A38D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRHub.Tests", "SignalRHub.Tests\SignalRHub.Tests.csproj", "{1D253E38-EB89-4641-9F73-7747F94A10F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B5126AA-1677-42A8-B9DC-E7A2826C0759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B5126AA-1677-42A8-B9DC-E7A2826C0759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B5126AA-1677-42A8-B9DC-E7A2826C0759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B5126AA-1677-42A8-B9DC-E7A2826C0759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22557B80-BBFD-4F6E-B198-D31AAFB1F8FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22557B80-BBFD-4F6E-B198-D31AAFB1F8FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22557B80-BBFD-4F6E-B198-D31AAFB1F8FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22557B80-BBFD-4F6E-B198-D31AAFB1F8FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D253E38-EB89-4641-9F73-7747F94A10F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D253E38-EB89-4641-9F73-7747F94A10F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D253E38-EB89-4641-9F73-7747F94A10F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D253E38-EB89-4641-9F73-7747F94A10F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{22557B80-BBFD-4F6E-B198-D31AAFB1F8FF} = {4B3E33EB-E546-46DD-A034-85529AB3A38D}
+		{1D253E38-EB89-4641-9F73-7747F94A10F5} = {4B3E33EB-E546-46DD-A034-85529AB3A38D}
+	EndGlobalSection
+EndGlobal
