@@ -16,22 +16,21 @@
  along with iHUD.  If not, see <http://www.apache.org/licenses/>.     
 *******************************************************************/
 
-using iRacingSdkWrapper;
-using Owin;
-using SimpleInjector;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace iHUDServer.IRacing
+namespace iHUDServer
 {
-    public static class IRacingExtensions
+    public interface ILiveDataReceiver
     {
-        public static void UseIRacing(this IAppBuilder app, Container appContainer)                        
-        {
-            appContainer.RegisterSingleton<SdkWrapper>();            
-        }       
+        /// <summary>
+        /// Starts the listenning.
+        /// </summary>
+        void StartListenning();
+
+        /// <summary>
+        /// Stops the listenning.
+        /// </summary>
+        void StopListenning();      
+
     }
 }

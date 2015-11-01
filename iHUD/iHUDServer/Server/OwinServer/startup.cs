@@ -15,14 +15,14 @@
  You should have received a copy of the Apache License
  along with iHUD.  If not, see <http://www.apache.org/licenses/>.     
 *******************************************************************/
+
 using Microsoft.AspNet.SignalR;
 using Microsoft.Owin.Cors;
 using Owin;
-using iHUDServer.IRacing;
 using SimpleInjector;
-using iHUDServer.DependencyResolver;
 using Microsoft.Owin;
 using System.Threading;
+using iHUDServer.IRacing;
 
 namespace iHUDServer
 {
@@ -31,7 +31,7 @@ namespace iHUDServer
         
         public void Configuration(IAppBuilder app)
         {
-            var _container = app.UseSimpleInjector();
+            //var _container = app.UseSimpleInjector();
 
             app.Map("/signalr", map =>
             {
@@ -54,30 +54,22 @@ namespace iHUDServer
                 // path.
                 map.RunSignalR(hubConfiguration);
             });
-           
-            app.UseIRacing(_container);
 
-            _container.RegisterSingleton<IDataReceptor, IRacingLiveReceptor>();
+            //app.UseIRacingWrapper(_container);
 
-            // 3. Optionally verify the container's configuration.
-            _container.Verify();
+            //_container.RegisterSingleton<IDataReceptor, IRacingLiveReceptor>();
+            //// 3. Optionally verify the container's configuration.
+            //_container.Verify();
 
+            //var iRacingReceptor = _container.GetInstance<IDataReceptor>();
 
-            var iRacingReceptor = _container.GetInstance<IDataReceptor>();            
+            //app.RegisterOnAppDisposing(() =>
+            //{
+            //    iRacingReceptor.StopListenning();
+            //});            
 
-            var context = new OwinContext(app.Properties);
-            var token = context.Get<CancellationToken>("host.OnAppDisposing");
-            if (token != CancellationToken.None)
-            {
-                token.Register(() =>
-                {
-                    iRacingReceptor.StopListenning();
-                });
-            }
-
-            //Start process
-            iRacingReceptor.StartListenning();
-
+            ////Start process
+            //iRacingReceptor.StartListenning();
         }
     }
 }

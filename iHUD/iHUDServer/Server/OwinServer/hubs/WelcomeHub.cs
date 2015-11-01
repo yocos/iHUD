@@ -29,7 +29,7 @@ namespace iHUDServer.hubs
         {
             Console.WriteLine(message);
             string newMessage = string.Format(@"{0} has a length of: {1}", message, message.Length);
-            Clients.All.ReceiveMessage(newMessage);
+            Clients.All.ReceiveMessage(message);
         }
         
     }

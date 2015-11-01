@@ -12,6 +12,24 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>\\Racing\tools\IHudServer\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +49,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>D143CD6E3C3234AF478327DD25FE6AD1EFCAD5F5</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>iHUDServer_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="iRacingSdkWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -102,20 +132,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DependencyResolver\SimpleInjectorExtensions.cs" />
-    <Compile Include="hubs\WelcomeHub.cs" />
-    <Compile Include="IRacing\IDataProcessor.cs" />
-    <Compile Include="IRacing\IRacingExtensions.cs" />
-    <Compile Include="IRacing\IRacingLiveReceptor.cs" />
-    <Compile Include="IDataReceptor.cs" />
-    <Compile Include="IRacing\SpeedDataProcessor.cs" />
+    <Compile Include="ApplicationContext.cs" />
+    <Compile Include="Guard.cs" />
+    <Compile Include="IRacing\RaceDataReceiver.cs" />
+    <Compile Include="Server\IRaceServerProxy.cs" />
+    <Compile Include="Server\OwinServer\hubs\WelcomeHub.cs" />
+    <Compile Include="Server\IRaceServer.cs" />
+    <Compile Include="IRacing\IRacingWrapperExtensions.cs" />
+    <Compile Include="ILiveDataReceiver.cs" />
+    <Compile Include="Server\OwinServer\OwinExtensions.cs" />
+    <Compile Include="Server\OwinServer\OwinRacingServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="startup.cs" />
+    <Compile Include="Server\OwinServer\startup.cs" />
+    <Compile Include="Server\RacingServerProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="iHUDServer_TemporaryKey.pfx" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

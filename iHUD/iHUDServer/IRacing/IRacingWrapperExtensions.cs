@@ -16,12 +16,26 @@
  along with iHUD.  If not, see <http://www.apache.org/licenses/>.     
 *******************************************************************/
 
-namespace iHUDServer
-{
-    public interface IDataReceptor
-    {
-        void StartListenning();
+using iHUDServer;
+using iHUDServer.IRacing;
+using iRacingSdkWrapper;
+using Owin;
+using SimpleInjector;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-        void StopListenning();   
+namespace IHUDServer.IRacing
+{
+    public static class IRacingWrapperExtensions
+    {
+        public static void UseIRacingWrapper(this ApplicationContext app)
+        {
+            app.ServiceProvider.RegisterSingleton<SdkWrapper>();
+            app.ServiceProvider.RegisterSingleton<ILiveDataReceiver, RaceDataReceiver>();
+        }
+
     }
 }

@@ -16,8 +16,13 @@
  along with iHUD.  If not, see <http://www.apache.org/licenses/>.     
 *******************************************************************/
 
+using iHUDServer.Interfaces;
+using IHUDServer.IRacing;
 using Microsoft.Owin.Hosting;
+using Owin;
+using SimpleInjector;
 using System;
+using System.Collections.Generic;
 
 namespace iHUDServer
 {
@@ -25,16 +30,32 @@ namespace iHUDServer
     {
         static void Main(string[] args)
         {
-            // This will *ONLY* bind to localhost, if you want to bind to all addresses
-            // use http://*:8080 or http://+:8080 to bind to all addresses. 
-            // See http://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx 
-            // for more information.
 
-            using (var myApp = WebApp.Start<Startup>("http://*:6778/"))
-            {                 
-      
-                Console.WriteLine("Server running at http://localhost:6778/");
-                Console.ReadLine();
+            using (ApplicationContext myApp = new ApplicationContext())
+            {
+                //Create DI Container
+                myApp.UseIRacingWrapper();
+                // myApp.UseOwinRacingServer();
+                myApp.ServiceProvider.Register<IRaceServerProxy, RacingServerProxy>(Lifestyle.Singleton);
+                myApp.ServiceProvider.RegisterCollection<IRaceServer>(new OwinRacingServer());
+
+                var proxy = myApp.ServiceProvider.GetInstance<IRaceServerProxy>();
+                var DataReceiver = myApp.ServiceProvider.GetInstance<ILiveDataReceiver>();
+                
+                try
+                {
+                    proxy.Start();
+                    DataReceiver.StartListenning();
+
+                    Console.WriteLine("Server is started - Press Return to Exit.");
+                    Console.ReadLine();
+                }
+                finally
+                {
+                    DataReceiver.StopListenning();
+                    proxy.Stop();
+                }
+
             }
         }
     }
