@@ -16,21 +16,19 @@
  along with iHUD.  If not, see <http://www.apache.org/licenses/>.     
 *******************************************************************/
 
+using iRacingSdkWrapper;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using System;
 
 namespace iHUDServer.hubs
 {
-    [HubName("WelcomeHub")]
-    public class WelcomeHub : Hub
+    [HubName("TelemetryHub ")]
+    public class TelemetryHub : Hub
     {
-        public void send(string message)
+        public void SendTelemetry(TelemetryInfo telemetry)
         {
-            Console.WriteLine(message);
-            string newMessage = string.Format(@"{0} has a length of: {1}", message, message.Length);
-            Clients.All.ReceiveMessage(message);
-        }
-        
+            Clients.All.SendTelemetry(telemetry);
+        }       
     }
 }

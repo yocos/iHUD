@@ -43,11 +43,6 @@ namespace Owin
             {
                 token.Register(cleanUpMethod);
             }
-        }
-
-        //public static void UseOwinRacingServer(this ApplicationContext app)
-        //{
-        //    app.ServiceProvider.RegisterSingleton<IRaceServer, OwinRacingServer>();
-        //}
+        }  
     }
 }

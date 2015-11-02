@@ -11,9 +11,16 @@
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Border>
                 <Viewbox >
-                    <TextBlock Name="speed" TextWrapping="Wrap" Text="XXX"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <StackPanel>
+                        <TextBlock Name="speed" TextWrapping="Wrap" Text="XXX"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <Button x:Name="button" Content="Test" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="button_Click"/>
+                        <Button x:Name="button2" Content="Test Led Color" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="button2_Click" />
+                        <Button x:Name="clear" Content="ClearScreen" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="clear_Click"  />
+                    </StackPanel>
                 </Viewbox>
             </Border>
         </Grid>
     </Border>
 </Page>
+
+    

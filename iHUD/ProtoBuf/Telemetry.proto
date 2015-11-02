@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package iHUD.Proto;
+
+option objc_class_prefix = "Telemetry";
+
+// Telemetry informations.
+message TelemetryInfo {  
+  TelemetryFloatValue Speed=1;
+  TelemetryIntValue Gear=2;
+  TelemetryFloatValue RPM=3;
+}
+
+message TelemetryIntValue { 
+  //the value;
+  int32 Value = 1;
+ 
+  // The unit of value
+  string Unit = 2; 
+    
+  // The data description.
+  string Description = 3;  
+}
+
+message TelemetryFloatValue {
+  //the value;
+  float Value = 1;
+
+  // The unit of value
+  string Unit = 2; 
+    
+  // The data description.
+  string Description = 3;  
+}
+
+message SendResult {}
+
+service TelemetryService {
+  // One request followed by one response.
+  rpc Send(TelemetryInfo) returns (SendResult);
+}
+
+
